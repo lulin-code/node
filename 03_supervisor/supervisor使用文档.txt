@@ -1,0 +1,9 @@
+
+1首先安装 supervisor
+  npm install -g supervisor
+
+2使用 supervisor 代替 node 命令启动应用
+
+
+3supervisor app.js
+
