@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-19 14:07:07
- * @LastEditTime: 2021-07-19 16:45:02
+ * @LastEditTime: 2021-07-19 17:17:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /Node/08_服务器搭建/app.js
@@ -16,7 +16,7 @@ const common = require('./module/common.js')
 
 
 http.createServer( (req, res)=> {
-  let pathName = req.url
+  let pathName = url.parse(req.url).pathname;
   pathName = pathName =='/' ? '/index.html' : pathName
 
   // 获取后缀名path.extname()
