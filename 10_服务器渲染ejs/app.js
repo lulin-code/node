@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-20 10:50:48
- * @LastEditTime: 2021-07-20 11:35:06
- * @LastEditors: your name
+ * @LastEditTime: 2021-07-20 13:56:27
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /Node/10_服务器渲染ejs/app.js
  */
@@ -20,39 +20,29 @@ http.createServer(function (req, res) {
   let pathname = url.parse(req.url).pathname;
   let extname = path.extname(pathname);
   if (!extname) {   //如果有后缀名的话让静态web服务去处理 
-    if (pathname == '/login') {
-      let msg = "数据库里面获取的数据";
-      let list = [
-        {
-          title: '新闻111'
-        },
-        {
-          title: '新闻222'
-        },
-        {
-          title: '新闻3333'
-        },
-        {
-          title: '新闻4444'
-        }, {
-          title: '新闻5555'
-        }
-      ]
-      ejs.renderFile('./views/login.ejs', {
-        msg: msg,
-        list: list
-      }, (err, data) => {
+    if (pathname == '/') {
+      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
+      res.end('首页');
+    } else if (pathname == '/news') {
+      let query = url.parse(req.url, true).query
+      console.log(query)
+      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
+      res.end('get传值获取成功');
+    } else if (pathname == '/login') {
+      ejs.renderFile("./views/form.ejs", {}, (err, data) => {
         res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
-        res.end(data);
+        res.end(data)
       })
-
-    } else if (pathname == '/register') {
-      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
-      res.end("执行注册");
-    } else if (pathname == '/admin') {
-      res.writeHead(200, { 'Content-Type': 'text/html;charset="utf-8"' });
-      res.end("处理后的业务逻辑");
-    } else {
+    } else if (pathname == '/doLogin'){
+      let postData = ''
+      req.on('data',(chunk)=> {
+        postData += chunk
+      })
+      req.on('end',()=> {
+        console.log(postData)
+        res.end(postData)
+      })
+    }else {
       res.writeHead(404, { 'Content-Type': 'text/html;charset="utf-8"' });
       res.end("404");
     }
