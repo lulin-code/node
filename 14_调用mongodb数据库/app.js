@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-30 13:56:11
- * @LastEditTime: 2021-07-30 15:51:01
+ * @LastEditTime: 2021-07-30 17:15:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /Node/14_调用mongodb数据库/app.js
@@ -59,8 +59,7 @@ client.connect((err)=> {
   //   console.log('成功删除一条数据')
   //   client.close()
   // } )
-
-   
+ 
 })
 
 
