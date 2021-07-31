@@ -7,7 +7,7 @@
  * @FilePath: /Node/15_ejs显示/app.js
  */
 const http = require("http");
-const app = require('./module/route');
+const app = require('./data/module/route');
 const ejs = require("ejs");
 const querystring = require('querystring')
 const {MongoClient} = require('mongodb')
